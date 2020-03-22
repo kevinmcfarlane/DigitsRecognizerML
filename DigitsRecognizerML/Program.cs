@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DigitsRecognizerMLML.Model;
 using Microsoft.ML;
@@ -40,14 +41,24 @@ namespace DigitsRecognizerML
             var samples = CreateDataSamples(VALIDATION_FILEPATH);
 
             Console.WriteLine("Using model to make multiple predictions -- Comparing actual Label with predicted Label from sample data...\n");
-
+            int matches = 0;
             foreach (var sample in samples)
             {
                 var prediction = ConsumeModel.Predict(sample);
-                Console.WriteLine($"Actual Label: {sample.Label} Predicted Label: {prediction.Prediction}");
+                float actualLabel = sample.Label;
+                float predictedLabel = prediction.Prediction;
+                Console.WriteLine($"Actual Label: {actualLabel} Predicted Label: {predictedLabel}");
+
+                bool matched = (int)actualLabel == (int)predictedLabel;
+                if (matched)
+                {
+                    matches++;
+                }
             }
 
-            // TODO: Calculate percent accuracy.
+            var accuracy = ((double)(1.0 * matches / samples.Count())).ToString("P", CultureInfo.InvariantCulture);
+            
+            Console.WriteLine($"\nAccuracy = {accuracy}\n");
 
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();

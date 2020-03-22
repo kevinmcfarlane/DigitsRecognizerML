@@ -31,3 +31,29 @@ For the Digit Recognizer problem, these were the Model Builder steps.
 Consume the generated code (in the DigitsRecognizerML project).
 
 The other two projects are the model and an application showing you how to consume the model in your own application.
+
+#### Results from validationsample.csv (27 data points)
+
+Using model to make multiple predictions -- Comparing actual Label with predicted Label from sample data...
+
+Actual Label: 8 Predicted Label: 1
+
+Actual Label: 7 Predicted Label: 7
+
+Actual Label: 2 Predicted Label: 2
+
+Actual Label: 6 Predicted Label: 6
+
+...
+
+Actual Label: 2 Predicted Label: 2
+
+Actual Label: 1 Predicted Label: 1
+
+Actual Label: 4 Predicted Label: 5
+
+#### Accuracy = 85.19 %
+
+This compares with the model's overall accuracy 0f 89% but here we are just using 27 data rows from the validation sample.
+
+
